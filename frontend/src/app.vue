@@ -9,4 +9,6 @@
 
 <style lang="scss">
 @import '@/assets/theme.scss';
+@import 'bootstrap/scss/bootstrap.scss';
+
 </style>
