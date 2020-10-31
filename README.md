@@ -1,8 +1,18 @@
-# stack
+# Event In
 
-A starter repository for MongoDB, Node.js, and Vue.js, with a local environment based on Docker.
+An event management project
 
 # Installation
+
+Install dependencies locally to have a consistent development environment
+```sh
+$ npm i
+$ cd backend
+$ npm i
+$ cd ../frontend
+$ npm i
+```
+
 
 ## Running the stack
 
@@ -46,7 +56,6 @@ This starts the backend service in the debug mode, so you can use the built-in d
 
 ```sh
 $ cd backend
-$ npm i
 $ npm test
 ```
 
@@ -54,9 +63,8 @@ $ npm test
 
 ```sh
 $ cd frontend
-$ npm i
-$ npm test:unit
-$ npm test:e2e
+$ npm run test:unit
+$ npm run test:e2e
 ```
 
 # Linting
@@ -69,7 +77,7 @@ These commands run the individual `lint` and `lint-staged` scripts in both the `
 
 MIT License
 
-Copyright (c) 2020 Coyotiv®
+Copyright (c) 2020 Furkan Ilgenci
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
