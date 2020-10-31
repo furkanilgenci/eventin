@@ -8,8 +8,11 @@ export default {
   components: {
     HelloWorld,
   },
-  created() {
-    this.fetchUsers()
+  data() {
+    return { users: 'null' }
+  },
+  async created() {
+    this.users = await this.fetchUsers()
   },
   methods: {
     ...mapActions(['fetchUsers']),
@@ -19,5 +22,6 @@ export default {
 
 <template lang="pug">
 .home
-  hello-world(msg="Welcome to your stack.")
+  hello-world(msg="Welcome to EventIn.")
+  h2 {{ users }}
 </template>

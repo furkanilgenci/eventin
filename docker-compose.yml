@@ -5,6 +5,8 @@ services:
     build:
       context: frontend
       dockerfile: dev.Dockerfile
+    environment:
+      - VUE_APP_API_ENDPOINT=/api
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.frontend.rule=Host(`${DOMAIN:-stack.localhost}`)'
@@ -20,7 +22,7 @@ services:
       context: backend
       dockerfile: dev.Dockerfile
     environment:
-      - MONGODB_CONNECTION_STRING=mongodb://mongo/stack
+      - MONGODB_CONNECTION_STRING=mongodb://mongo/eventin
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.backend.rule=(Host(`${DOMAIN:-stack.localhost}`) && (PathPrefix(`/api`) || PathPrefix(`/socket`)))'
@@ -35,7 +37,7 @@ services:
   mongo:
     image: mongo
     ports:
-      - 27017:27017
+      - 37017:27017
   load-balancer:
     image: traefik:v2.2
     command:

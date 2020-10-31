@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const cors = require('cors')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
@@ -10,6 +11,15 @@ const usersRouter = require('./routes/users')
 require('./database-connection')
 
 const app = express()
+
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+)
+
+app.set('trust proxy', 1)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
