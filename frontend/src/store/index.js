@@ -42,6 +42,9 @@ export default createStore({
         return date > now
       })
     },
+    async getEventById(_, id) {
+      return (await API.get(`/events/${id}`)).data
+    },
     async postEvent({ state }, event) {
       const imgurResponse = (await uploadImage(event.image, state.IMGUR_CLIENT_ID)).data
       event.image = imgurResponse.data.link
