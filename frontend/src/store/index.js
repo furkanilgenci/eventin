@@ -1,14 +1,20 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 
+import uploadImage from '@/utils/imgur-upload.js'
+import resolveLocation from '@/utils/google-resolve-location.js'
+
 const API = axios.create({
   baseURL: process.env.VUE_APP_API_ENDPOINT,
   withCredentials: true,
-  timeout: 1000,
+  timeout: 3000,
 })
 
 export default createStore({
-  state: {},
+  state: {
+    GOOGLE_API_KEY: process.env.VUE_APP_GOOGLE_API_KEY,
+    IMGUR_CLIENT_ID: process.env.VUE_APP_IMGUR_CLIENT_ID,
+  },
   mutations: {},
   actions: {
     async getAllEvents() {
@@ -35,6 +41,15 @@ export default createStore({
         const date = new Date(ev.time)
         return date > now
       })
+    },
+    async postEvent({ state }, event) {
+      const imgurResponse = (await uploadImage(event.image, state.IMGUR_CLIENT_ID)).data
+      event.image = imgurResponse.data.link
+
+      const googleGeolocationResponse = (await resolveLocation(event.location, state.GOOGLE_API_KEY)).data
+      event.location = googleGeolocationResponse
+
+      return (await API.post('/events', event)).data
     },
   },
   modules: {},
