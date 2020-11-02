@@ -50,7 +50,7 @@ div.bg-secondary.py-0.py-sm-4
         p {{ descriptionShort }}
         h6.text-primary.event-organizer {{ event.organizer }}
     hr
-    .event-body
+    .event-body.px-0.px-md-5
       .row
         .col-12
           h3 Event details
@@ -98,7 +98,6 @@ div.bg-secondary.py-0.py-sm-4
   }
 }
 .event-body {
-  padding: 0 3rem;
   & > * {
     padding: 1rem 0;
   }
